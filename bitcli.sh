@@ -150,6 +150,10 @@ init() {
     # info "CLI not found"
   fi
 
+  if [ ${1:-ok} = "--updatecli" ]; then
+    update_nami_cli
+  fi
+
   source ~/."${NAMI_MINI_PRODUCT_NAME}"/cli/cli-${NAMI_CLI_VERSION}.sh
 
   init_global_variables
@@ -158,6 +162,9 @@ init() {
 # See: https://sipb.mit.edu/doc/safe-shell/
 set -e
 set -u
-init
+init "$@"
+if [ ${1:-ok} = "--updatecli" ]; then
+  shift
+fi
 parse_command_line "$@"
 execute_cli "$@"
