@@ -60,17 +60,15 @@ init_global_variables() {
 
   USAGE="
 Usage: ${NAMI_MINI_PRODUCT_NAME} <application> <COMMAND> [--force]
-    start                              Starts <application> docker compose based server
-    stop                               Stops <application> docker compose based server
-    restart                            Restart <application> docker compose based server
-    volumes                            Clear existing volumes from <application> docker compose based server
+    start                              Starts <application> 
+    stop                               Stops <application> 
+    restart                            Restart <application>
+    volumes                            Clear existing volumes for <application>
     info                               Shows <application> docker-compose file and debug info
-    list                               List the bitnami available applications
-    update [--force]                   Installs version, respecting NAMI_VERSION & NAMI_UTILITY_VERSION
+    update [--force]                   Update base image (--force first deletes it)
     compose <commands>                 Execute docker-compose for the <appliction> with the <commands> as parameters 
 
-    --force                            Force the download of the <application> docker compose file 
-
+    --force                            Force always the download of the <application> docker compose file
 "
 }
 
@@ -585,7 +583,7 @@ execute_nami_launcher() {
   COMPOSE_FILE="./${NAMI_CLI_APP}/docker-compose.yml"
   if [ ! -f "${COMPOSE_FILE}" ] || [ "${2:-ok}" = "--force" ]; then
     URL=https://raw.githubusercontent.com/bitnami/bitnami-docker-${NAMI_CLI_APP}/master/docker-compose.yml
-    info "Downloading from ${URL}"
+    info "Downloading docker compose file from ${URL}"
     if ! curl --output /dev/null --silent --head --fail "$URL"; then
       error "${NAMI_CLI_APP} download error. Bad network or a non Bitnami supported container application"
       return 1;
