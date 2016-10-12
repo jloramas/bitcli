@@ -30,12 +30,14 @@ You can install the Bitnami CLI scripts from the Bitnami GitHub repo. Windows us
 
 # Use
 
-You just need to indicate the application name and what you want to with it:
+You just need to indicate the application name and what you want to do with it:
 
   ```
+  # To start a Wordpress server application
   bitcli wordpress start
+
+  # To stop the Wordpress server
   bitcli wordpress stop
-  ...
   ```
 
   Usage
