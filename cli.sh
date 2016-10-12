@@ -121,6 +121,7 @@ execute_cli() {
     ;;
     update)
       shift
+      shift
       load_profile
       # Not yet supported
       # update_nami_cli
