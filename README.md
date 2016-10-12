@@ -1,0 +1,2 @@
+# bitcli
+Bitnami CLI
